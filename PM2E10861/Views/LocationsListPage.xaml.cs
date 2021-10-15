@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -41,8 +42,10 @@ namespace PM2E10861.Views
 
         }
 
-        void btnVerEnMapa_Clicked(System.Object sender, System.EventArgs e)
+        private async void btnVerEnMapa_Clicked(System.Object sender, System.EventArgs e)
         {
+           await Navigation.PushAsync(new MapaPage("14.077795057653594","-87.18924885000001", "Tegucigalpa", "Francisco Morazan - Tegucigalpa"));
+
         }
 
         private async void listUbicaciones_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
@@ -56,7 +59,8 @@ namespace PM2E10861.Views
 
             if (answer)
             {
-                await Navigation.PushAsync(new Views.NewLocationPage());
+                await Navigation.PushAsync(new Views.MapaPage(u.latitud,u.longitud,u.descripcion_corta,u.descripcion_larga));
+
             }
         }
     }

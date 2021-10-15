@@ -80,18 +80,24 @@ namespace PM2E10861.Views
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Handle not supported on device exception
+                await DisplayAlert("Alerta", "Geolocalización no soportada", "OK");
+
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
+                await DisplayAlert("Alerta", "Geolocalización inhabilitada", "OK");
+
             }
             catch (PermissionException pEx)
             {
-                // Handle permission exception
+                await DisplayAlert("Alerta", "Se ha denegado el permiso", "OK");
+
             }
             catch (Exception ex)
             {
-                // Unable to get location
+                await DisplayAlert("Alerta", "No se ha podido obtener la ubicación", "OK");
+
             }
         }
         protected override void OnDisappearing()
@@ -100,7 +106,7 @@ namespace PM2E10861.Views
                 cts.Cancel();
             base.OnDisappearing();
         }
-        void btnListaUbicacion_Clicked(System.Object sender, System.EventArgs e)
+       
         private async void btnListaUbicacion_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new Views.LocationsListPage());

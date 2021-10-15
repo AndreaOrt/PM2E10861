@@ -16,10 +16,10 @@
                 <Image Source="uthlogo.png" WidthRequest="150" HeightRequest="150"/>
 
                 <Label Text="Latitud actual" FontAttributes="Bold" FontSize="17"></Label>
-                <Entry x:Name="txtlatitud" Text=""></Entry>
+                <Entry x:Name="txtlatitud" IsReadOnly="true"></Entry>
 
                 <Label Text="Longitud actual" FontAttributes="Bold" FontSize="17"></Label>
-                <Entry x:Name="txtlongitud" Text=""></Entry>
+                <Entry x:Name="txtlongitud" IsReadOnly="true"></Entry>
 
                 <Label Text="Describa la ubicación" FontAttributes="Bold" FontSize="17"></Label>
                 <Editor x:Name="txtdescripcionL" Placeholder="Ingrese una descripción"/>
