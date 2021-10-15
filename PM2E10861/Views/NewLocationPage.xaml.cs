@@ -54,8 +54,19 @@ namespace PM2E10861.Views
             this.txtdescripcionC.Text = String.Empty;
         }
 
-        void btnListaUbicacion_Clicked(System.Object sender, System.EventArgs e)
+        private async void btnListaUbicacion_Clicked(System.Object sender, System.EventArgs e)
         {
+            await Navigation.PushAsync(new Views.LocationsListPage());
+        }
+
+        private async void toolbarNewLocation_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.NewLocationPage());
+        }
+
+        private async void toolbarLocationsList_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.LocationsListPage());
         }
     }
 }

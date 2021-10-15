@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PM2E10861.Views.LocationsListPage">
+    
+    <StackLayout>
+        <Label x:Name="txtid" IsVisible="False" Text="{Binding id}"></Label>
+
+        <ListView x:Name="listUbicaciones" ItemTapped="listUbicaciones_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding descripcion_corta}" Grid.Row="0" Grid.Column="0" TextColor="Blue" Padding="10,0,0,0"/>
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnEliminar" Text="Eliminar" Grid.Column="0" Clicked="btnEliminar_Clicked" BackgroundColor="IndianRed"></Button>
+            <Button x:Name="btnVerEnMapa" Text="Ver Mapa" Grid.Column="1" Clicked="btnVerEnMapa_Clicked" BackgroundColor="LightSkyBlue"></Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>
