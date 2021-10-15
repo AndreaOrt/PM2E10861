@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PM2E10861.Views
 {
     public partial class NewLocationPage : ContentPage
     {
+        CancellationTokenSource cts;
         public NewLocationPage()
         {
             InitializeComponent();
+            _ = GetCurrentLocation();
         }
 
         private async void btnGuardarUbicacion_Clicked(System.Object sender, System.EventArgs e)
@@ -52,10 +58,51 @@ namespace PM2E10861.Views
             this.txtlongitud.Text = String.Empty;
             this.txtdescripcionL.Text = String.Empty;
             this.txtdescripcionC.Text = String.Empty;
+           
         }
 
+        async Task GetCurrentLocation()
+        {
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                cts = new CancellationTokenSource();
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+
+                if (location != null)
+                {
+                    //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    txtlatitud.Text = location.Latitude.ToString();
+                    txtlongitud.Text = location.Longitude.ToString();
+
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+        }
+        protected override void OnDisappearing()
+        {
+            if (cts != null && !cts.IsCancellationRequested)
+                cts.Cancel();
+            base.OnDisappearing();
+        }
         void btnListaUbicacion_Clicked(System.Object sender, System.EventArgs e)
         {
+
         }
     }
 }
