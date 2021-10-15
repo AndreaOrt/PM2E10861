@@ -20,8 +20,11 @@ namespace PM2E10861.Views
 
         private async void btnGuardarUbicacion_Clicked(System.Object sender, System.EventArgs e)
         {
-
-            if (System.String.IsNullOrWhiteSpace(txtdescripcionL.Text))
+            if (System.String.IsNullOrWhiteSpace(txtlatitud.Text) || System.String.IsNullOrWhiteSpace(txtlongitud.Text))
+            {
+                await this.DisplayAlert("Alerta", "GPS no está activo.", "OK");
+            }
+            else if (System.String.IsNullOrWhiteSpace(txtdescripcionL.Text))
             {
                 await this.DisplayAlert("Alerta", "Debe describir la ubicación.", "OK");
             }
@@ -58,7 +61,6 @@ namespace PM2E10861.Views
             this.txtlongitud.Text = String.Empty;
             this.txtdescripcionL.Text = String.Empty;
             this.txtdescripcionC.Text = String.Empty;
-           
         }
 
         async Task GetCurrentLocation()

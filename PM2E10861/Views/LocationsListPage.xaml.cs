@@ -26,20 +26,27 @@ namespace PM2E10861.Views
 
         public async void btnEliminar_Clicked(System.Object sender, System.EventArgs e)
         {
-            bool answerDelete = await DisplayAlert("Acción", "¿Desea eliminar la ubicación indicada?", "Yes", "No");
-            if (answerDelete)
+            if (idUbicacion != 0)
             {
-                Debug.WriteLine("ID!: " + idUbicacion);
-                var ubicacion = new Models.Localizacion
+                bool answerDelete = await DisplayAlert("Acción", "¿Desea eliminar la ubicación indicada?", "Yes", "No");
+                if (answerDelete)
                 {
-                    id = idUbicacion
-                };
+                    Debug.WriteLine("ID!: " + idUbicacion);
+                    var ubicacion = new Models.Localizacion
+                    {
+                        id = idUbicacion
+                    };
 
-                await App.BaseDatos.EliminarLocalizacion(ubicacion);
-                await DisplayAlert("Acción", "Ubicación eliminada", "OK");
-                await Navigation.PushAsync(new Views.LocationsListPage());
+                    await App.BaseDatos.EliminarLocalizacion(ubicacion);
+                    await DisplayAlert("Acción", "Ubicación eliminada", "OK");
+                    idUbicacion = 0;
+                    await Navigation.PushAsync(new Views.LocationsListPage());
+                }
             }
-
+            else
+            {
+                await DisplayAlert("Acción", "No hay ubicación seleccionada para eliminar", "OK");
+            }
         }
 
         private async void btnVerEnMapa_Clicked(System.Object sender, System.EventArgs e)
