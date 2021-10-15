@@ -4,8 +4,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PM2E10861.Views.NewLocationPage">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="uthlogo.png" WidthRequest="150" HeightRequest="150"/>
 
-        </StackLayout>
+                <Label Text="Latitud actual" FontAttributes="Bold" FontSize="17"></Label>
+                <Entry x:Name="txtlatitud" Text="87.12"></Entry>
+
+                <Label Text="Longitud actual" FontAttributes="Bold" FontSize="17"></Label>
+                <Entry x:Name="txtlongitud" Text="90.12"></Entry>
+
+                <Label Text="Describa la ubicación" FontAttributes="Bold" FontSize="17"></Label>
+                <Editor x:Name="txtdescripcionL" Placeholder="Ingrese una descripción"/>
+
+                <Label Text="Descripción corta" FontAttributes="Bold" FontSize="17"></Label>
+                <Entry x:Name="txtdescripcionC" Placeholder="Ingrese una descripción"></Entry>
+
+                <Button x:Name="btnGuardarUbicacion" Text="Salvar Ubicación" Clicked="btnGuardarUbicacion_Clicked"></Button>
+                <Button x:Name="btnListaUbicacion" Text="Ubicaciones Salvadas" Clicked="btnListaUbicacion_Clicked"></Button>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
